@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://cne6elobmttcl"]
+
+[ext_resource type="Texture2D" uid="uid://bjdl1lp4hhsgd" path="res://textures/PNG/Orange/texture_05.png" id="1_x07hh"]
+[ext_resource type="Texture2D" uid="uid://wq3howc78367" path="res://textures/PNG/Robot/character_robot_idle.png" id="2_pftnk"]
+[ext_resource type="Script" uid="uid://17k8enhf6tui" path="res://scripts/player.gd" id="3_pftnk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mf4mk"]
+albedo_texture = ExtResource("1_x07hh")
+uv1_scale = Vector3(35, 35, 35)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ksfn8"]
+material = SubResource("StandardMaterial3D_mf4mk")
+size = Vector2(15.275, 14.99)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_pftnk"]
+data = PackedVector3Array(7.6375, 0, 7.495, -7.6375, 0, 7.495, 7.6375, 0, -7.495, -7.6375, 0, 7.495, -7.6375, 0, -7.495, 7.6375, 0, -7.495)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37kl0"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("2_pftnk")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ksfn8"]
+material = SubResource("StandardMaterial3D_37kl0")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qnpof"]
+
+[node name="Node3D" type="Node3D" unique_id=1880461184]
+
+[node name="Plane" type="MeshInstance3D" parent="." unique_id=1632524678]
+transform = Transform3D(3.014987, 0, 0, 0, 1.0000008, 0, 0, 0, 2.8753734, -0.44517255, 0, -0.44577932)
+mesh = SubResource("PlaneMesh_ksfn8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Plane" unique_id=1104107167]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Plane/StaticBody3D" unique_id=1522753296]
+shape = SubResource("ConcavePolygonShape3D_pftnk")
+
+[node name="Player" type="CharacterBody3D" parent="." unique_id=1444216226]
+script = ExtResource("3_pftnk")
+
+[node name="Camera3D" type="Camera3D" parent="Player" unique_id=1348898594]
+transform = Transform3D(0.7071068, -0.48224565, 0.51714516, 0, 0.7313537, 0.6819984, -0.7071068, -0.48224565, 0.51714516, 2.7459397, 4.9671865, 3.0743735)
+projection = 1
+size = 6.914349
+
+[node name="Sprite" type="MeshInstance3D" parent="Player" unique_id=451350255]
+transform = Transform3D(0.7071068, -0.5, 0.5, 0, 0.7071068, 0.70710677, -0.7071068, -0.5, 0.5, 0, 1.0294962, 0)
+mesh = SubResource("QuadMesh_ksfn8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1048812569]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_qnpof")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=743631307]
+transform = Transform3D(1, 0, 0, 0, 0.20606452, 0.97853845, 0, -0.97853845, 0.20606452, 0, 4.153498, 0)
