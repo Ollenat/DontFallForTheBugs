@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cr602201s6jea"]
+
+[ext_resource type="Texture2D" uid="uid://wq3howc78367" path="res://textures/PNG/Robot/character_robot_idle.png" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://d1j42oydydqx5" path="res://scripts/enemy.gd" id="2_md0e3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b834p"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 1
+alpha_antialiasing_edge = 0.3
+albedo_texture = ExtResource("1_7p1mj")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_rb8yp"]
+material = SubResource("StandardMaterial3D_b834p")
+
+[node name="MeshInstance3D" type="MeshInstance3D" unique_id=936701212]
+mesh = SubResource("QuadMesh_rb8yp")
+script = ExtResource("2_md0e3")
+separation_strength = 1.0
