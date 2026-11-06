@@ -4,7 +4,7 @@ extends CharacterBody3D
 @export var acceleration: float = 14.0
 @export var friction: float = 10.0
 
-@onready var camera: Camera3D = $Camera3D
+@export var camera: Camera3D
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
