@@ -22,5 +22,5 @@ func _on_area_entered(area: Area3D) -> void:
         area.damage(100)
         queue_free()
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
     global_position += direction * speed * delta
