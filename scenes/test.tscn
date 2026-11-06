@@ -1,24 +1,15 @@
 [gd_scene format=3 uid="uid://dlqebt2tf1nf6"]
 
-[ext_resource type="Texture2D" uid="uid://bjdl1lp4hhsgd" path="res://textures/PNG/Orange/texture_05.png" id="1_bl13t"]
-[ext_resource type="Texture2D" uid="uid://wq3howc78367" path="res://textures/PNG/Robot/character_robot_idle.png" id="2_iyx0m"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mf4mk"]
-albedo_texture = ExtResource("1_bl13t")
-uv1_scale = Vector3(35, 35, 35)
+[ext_resource type="Material" uid="uid://yrdh7s4showw" path="res://materials/TestingMaterial.tres" id="1_bl13t"]
+[ext_resource type="PackedScene" uid="uid://bloqgrua0hxmo" path="res://scenes/player.tscn" id="2_bl13t"]
+[ext_resource type="Script" uid="uid://b0gsvjudddas2" path="res://scripts/ClosestEntityComponent.gd" id="3_iyx0m"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ksfn8"]
-material = SubResource("StandardMaterial3D_mf4mk")
+material = ExtResource("1_bl13t")
 size = Vector2(15.275, 14.99)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_37kl0"]
-transparency = 2
-alpha_scissor_threshold = 0.5
-alpha_antialiasing_mode = 0
-albedo_texture = ExtResource("2_iyx0m")
-
-[sub_resource type="QuadMesh" id="QuadMesh_ksfn8"]
-material = SubResource("StandardMaterial3D_37kl0")
+[sub_resource type="SphereShape3D" id="SphereShape3D_qt3ec"]
+radius = 9.600081
 
 [node name="Node3D" type="Node3D" unique_id=1880461184]
 
@@ -26,11 +17,11 @@ material = SubResource("StandardMaterial3D_37kl0")
 transform = Transform3D(3.014987, 0, 0, 0, 1.0000008, 0, 0, 0, 2.8753734, -0.44517255, 0, -0.44577932)
 mesh = SubResource("PlaneMesh_ksfn8")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=451350255]
-transform = Transform3D(0.7071068, -0.5, 0.5, 0, 0.7071068, 0.70710677, -0.7071068, -0.5, 0.5, 0, 0.40927768, 0)
-mesh = SubResource("QuadMesh_ksfn8")
+[node name="Player" parent="." unique_id=1322533949 instance=ExtResource("2_bl13t")]
 
-[node name="Camera3D" type="Camera3D" parent="MeshInstance3D2" unique_id=1348898594]
-transform = Transform3D(1, 0, 0, 0, 0.9993907, -0.034899443, 0, 0.034899488, 0.99939084, -0.23223782, -0.35412663, 5.4661865)
-projection = 1
-size = 6.914349
+[node name="ClosestEntityComponent" type="Area3D" parent="." unique_id=639306235]
+script = ExtResource("3_iyx0m")
+metadata/_custom_type_script = "uid://b0gsvjudddas2"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClosestEntityComponent" unique_id=1194153106]
+shape = SubResource("SphereShape3D_qt3ec")
