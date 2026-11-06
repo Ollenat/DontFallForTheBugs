@@ -1,47 +1,57 @@
-extends Node3D
+extends CharacterBody3D
 
 @export var player: Node3D
-@export var speed: float = 5.0
-@export var separation_radius: float = 0.8
-@export var separation_strength: float = 1.2
-@export var smoothness: float = 8.0
+@export var max_speed := 4.0
+## Hur snabbt fienden når målhastigheten (enhet/s²)
+@export var acceleration := 40.0
+@export var separation_radius := 1.0
+@export var separation_strength := 1.5
+@export var gravity := 20.0
 
-var _velocity: Vector2 = Vector2.ZERO
+var _separation := Vector2.ZERO
+var _tick := 0
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	add_to_group("enemies")
+	_tick = randi() % 4  # sprider ut separationsberäkningen mellan fiender
+	if player == null:
+		push_error("Player was not assigned on enemy")
 
+func _physics_process(delta: float) -> void:
+	if player == null:
+		return
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	# Get the player's position
-	var player_position = Vector2(player.global_position.x, player.global_position.z)
-	var enemy_position = Vector2(global_position.x, global_position.z)
+	var pos := Vector2(global_position.x, global_position.z)
+	var player_pos := Vector2(player.global_position.x, player.global_position.z)
+	var dir := pos.direction_to(player_pos)
 
-	# Get the direction from the enemy to the player
-	var direction_to_player = (player_position - enemy_position).normalized()
+	# Separation räknas var 4:e tick och återanvänds mellan tickarna
+	_tick += 1
+	if _tick % 4 == 0:
+		_separation = _calc_separation(pos)
 
-	# Calculate separation from nearby enemies
-	var separation = Vector2.ZERO
-	var parent = get_parent()
-	if parent:
-		for child in parent.get_children():
-			if child == self or not child is Node3D:
-				continue
-			var other_pos = Vector2(child.global_position.x, child.global_position.z)
-			var diff = enemy_position - other_pos
-			var dist = diff.length()
-			if dist < separation_radius and dist > 0:
-				separation += diff.normalized() / dist
+	# Blanda riktning mot spelaren med separation
+	var target := (dir + _separation * separation_strength).limit_length(1.0) * max_speed
 
-	# Blend separation with direction to player
-	var target_velocity = direction_to_player + separation * separation_strength
-	target_velocity = target_velocity.normalized() * speed
+	# move_toward ger konstant acceleration mot målhastigheten
+	var horizontal := Vector2(velocity.x, velocity.z)
+	horizontal = horizontal.move_toward(target, acceleration * delta)
+	velocity.x = horizontal.x
+	velocity.z = horizontal.y
 
-	# Smoothly interpolate velocity toward target
-	_velocity = _velocity.lerp(target_velocity, smoothness * delta)
+	if not is_on_floor():
+		velocity.y -= gravity * delta
 
-	# Move the enemy using smoothed velocity
-	global_position.x += _velocity.x * delta
-	global_position.z += _velocity.y * delta
+	move_and_slide()
+
+func _calc_separation(pos: Vector2) -> Vector2:
+	var result := Vector2.ZERO
+	var r2 := separation_radius * separation_radius
+	for other in get_tree().get_nodes_in_group("enemies"):
+		if other == self:
+			continue
+		var diff := pos - Vector2(other.global_position.x, other.global_position.z)
+		var d2 := diff.length_squared()
+		if d2 < r2 and d2 > 0.0001:
+			result += diff / maxf(d2, 0.01)
+	return result
