@@ -14,8 +14,8 @@ extends Area3D
 var timer: Timer
 
 func _ready() -> void:
-	body_entered.connect(func(body): targets.append(body))
-	body_exited.connect(func(body): targets.erase(body))
+	area_entered.connect(func(body): targets.append(body))
+	area_exited.connect(func(body): targets.erase(body))
 	
 	timer = Timer.new()
 	add_child(timer) # add timer to scene tree
