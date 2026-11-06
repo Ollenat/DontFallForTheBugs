@@ -1,0 +1,52 @@
+[gd_resource type="Theme" format=3 uid="uid://ccmby4aqakgno"]
+
+[ext_resource type="FontFile" uid="uid://bsc21ne0f4ofo" path="res://SilomBol.ttf" id="1_bpic7"]
+[ext_resource type="StyleBox" uid="uid://dclrggj4ms8i7" path="res://Button_Style.tres" id="2_gbh2n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ei832"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0omi4"]
+
+[resource]
+Button/colors/font_color = Color(0.47058824, 0.5411765, 0.5294118, 1)
+Button/colors/font_disabled_color = Color(0.19793725, 0.19793722, 0.19793722, 1)
+Button/colors/font_focus_color = Color(0.6901961, 0.7882353, 0.77254903, 1)
+Button/colors/font_hover_color = Color(0.6901961, 0.7882353, 0.77254903, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0.007702737, 0.0017466176, 0.00058878213, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 1
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/line_spacing = 7
+Button/constants/outline_size = 12
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_bpic7")
+Button/styles/disabled = SubResource("StyleBoxFlat_ei832")
+Button/styles/hover = ExtResource("2_gbh2n")
+Button/styles/hover_pressed = ExtResource("2_gbh2n")
+Button/styles/normal = ExtResource("2_gbh2n")
+Button/styles/pressed = ExtResource("2_gbh2n")
+Label/colors/font_color = Color(0.47843137, 0.1882353, 0.27058825, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/line_spacing = 3
+Label/constants/outline_size = 12
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_bpic7")
+Label/styles/normal = SubResource("StyleBoxEmpty_0omi4")

@@ -1,0 +1,100 @@
+[gd_scene format=3 uid="uid://drjoxqf3unms5"]
+
+[ext_resource type="Script" uid="uid://dj8h30v0dc3nt" path="res://options_menu.gd" id="1_options"]
+[ext_resource type="Theme" uid="uid://c6vb2s0kb1r6c" path="res://Title_theme.tres" id="2_hm4m4"]
+[ext_resource type="Theme" uid="uid://ccmby4aqakgno" path="res://Text_theme.tres" id="3_lfjc7"]
+
+[node name="OptionsMenu" type="Control" unique_id=1719612646]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_options")
+
+[node name="Background" type="ColorRect" parent="." unique_id=663778597]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.18039216, 0.13333334, 0.18431373, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=889311967]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=173883124]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer" unique_id=2065770983]
+unique_name_in_owner = true
+layout_mode = 2
+offset_transform_enabled = true
+theme = ExtResource("2_hm4m4")
+theme_override_constants/line_spacing = 3
+theme_override_constants/paragraph_spacing = 0
+theme_override_font_sizes/font_size = 68
+text = "Options"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer" unique_id=49298059]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="VolumeRow" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1685482929]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="VolumeLabel" type="Label" parent="CenterContainer/VBoxContainer/VolumeRow" unique_id=1873419402]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+theme = ExtResource("3_lfjc7")
+theme_override_font_sizes/font_size = 20
+text = "Master Volume"
+
+[node name="VolumeSlider" type="HSlider" parent="CenterContainer/VBoxContainer/VolumeRow" unique_id=8319246]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="VolumeValue" type="Label" parent="CenterContainer/VBoxContainer/VolumeRow" unique_id=1905126568]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(56, 0)
+layout_mode = 2
+theme = ExtResource("3_lfjc7")
+theme_override_font_sizes/font_size = 20
+text = "100%"
+horizontal_alignment = 2
+
+[node name="FullscreenCheck" type="CheckButton" parent="CenterContainer/VBoxContainer" unique_id=1669902920]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("3_lfjc7")
+theme_override_font_sizes/font_size = 20
+text = " Fullscreen"
+
+[node name="Spacer2" type="Control" parent="CenterContainer/VBoxContainer" unique_id=1962863264]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=399049193]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("3_lfjc7")
+theme_override_font_sizes/font_size = 22
+text = "Back"
