@@ -40,4 +40,3 @@ func get_nearest() -> Node3D:
 func fire() -> void:
 	targets = targets.filter(func(t): return is_instance_valid(t))
 	closest_target = get_nearest()
-	print(closest_target)

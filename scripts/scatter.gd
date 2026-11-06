@@ -11,5 +11,5 @@ func _ready() -> void:
 		enemy.player = player_scene
 		var random_x = randf_range(-plane_size.x / 2, plane_size.x / 2)
 		var random_z = randf_range(-plane_size.y / 2, plane_size.y / 2)
-		enemy.global_position = Vector3(random_x, 1, random_z)
 		add_child(enemy)
+		enemy.global_position = Vector3(random_x, 1, random_z)
