@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://d2bkarfgvyvwd"]
+
+[ext_resource type="Script" uid="uid://c67lhbaik8gfq" path="res://scripts/sawblade_attack.gd" id="1_5gbhx"]
+[ext_resource type="PackedScene" uid="uid://bwu74t1ujcx6l" path="res://scenes/sawblade.tscn" id="2_8f8xt"]
+[ext_resource type="Script" uid="uid://4u2miku4ijdk" path="res://scripts/Components/OrbitingComponent.gd" id="2_ar5ky"]
+
+[node name="SawbladeAttack" type="Node3D" unique_id=2059723613 node_paths=PackedStringArray("orbiting_component")]
+script = ExtResource("1_5gbhx")
+orbiting_component = NodePath("OrbitingComponent")
+sawblade_scene = ExtResource("2_8f8xt")
+
+[node name="OrbitingComponent" type="Node3D" parent="." unique_id=187382965]
+script = ExtResource("2_ar5ky")
+metadata/_custom_type_script = "uid://4u2miku4ijdk"

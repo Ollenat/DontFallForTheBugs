@@ -4,7 +4,6 @@ class_name HealthComponent
 @export var max_health: int = 100
 var current_health: int
 
-
 signal died()
 signal damaged(old_health: int, new_health: int) # Emits everytime
 signal healed(old_health: int, new_health: int)
@@ -17,7 +16,7 @@ func _ready() -> void:
 
 func damage(amount: int) -> void:
 	var old := current_health
-	current_health = min(0, current_health - amount)
+	current_health = max(0, current_health - amount)
 	if current_health == 0:
 		died.emit()
 		get_parent().queue_free() #temp

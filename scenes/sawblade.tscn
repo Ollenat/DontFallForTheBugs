@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://bwu74t1ujcx6l"]
+
+[ext_resource type="Script" uid="uid://bsfp75yhjuhso" path="res://scripts/Components/DamageAreaComponent.gd" id="1_jbc87"]
+[ext_resource type="Texture2D" uid="uid://cygqfwsjygdiu" path="res://icon.svg" id="2_jbc87"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qt3ec"]
+radius = 0.5240297
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ajshl"]
+albedo_texture = ExtResource("2_jbc87")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_qt3ec"]
+material = SubResource("StandardMaterial3D_ajshl")
+
+[node name="Sawblade" type="Node3D" unique_id=1442289867]
+
+[node name="DamageAreaComponent" type="Area3D" parent="." unique_id=507946474]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_jbc87")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageAreaComponent" unique_id=1614306050]
+shape = SubResource("SphereShape3D_qt3ec")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DamageAreaComponent/CollisionShape3D" unique_id=261454118]
+mesh = SubResource("QuadMesh_qt3ec")

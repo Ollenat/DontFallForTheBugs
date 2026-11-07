@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://ui34r6tr2mp5" path="res://materials/EnemyMaterial.tres" id="1_md0e3"]
 [ext_resource type="Script" uid="uid://d1j42oydydqx5" path="res://scripts/enemy.gd" id="2_md0e3"]
-[ext_resource type="Script" uid="uid://bvw5aa5v3w87x" path="res://scripts/HealthComponent.gd" id="3_4ra3w"]
+[ext_resource type="Script" uid="uid://bvw5aa5v3w87x" path="res://scripts/Components/HealthComponent.gd" id="3_4ra3w"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qt3ec"]
 radius = 0.22216797

@@ -4,7 +4,30 @@
 [ext_resource type="PackedScene" uid="uid://bloqgrua0hxmo" path="res://scenes/player.tscn" id="2_bl13t"]
 [ext_resource type="PackedScene" uid="uid://cr602201s6jea" path="res://scenes/enemy.tscn" id="4_74lek"]
 [ext_resource type="Texture2D" uid="uid://dcxuh0uficnl5" path="res://textures/PNG/Dark/texture_04.png" id="4_j5jx5"]
+[ext_resource type="PackedScene" uid="uid://d2bkarfgvyvwd" path="res://scenes/sawblade_attack.tscn" id="5_at5dv"]
 [ext_resource type="Script" uid="uid://cjykh2us57ml5" path="res://scripts/Components/SmoothFollowComponent.gd" id="5_j5jx5"]
+[ext_resource type="Script" uid="uid://bkwbh870ebmf0" path="res://resources/sawblade.gd" id="5_jcd4p"]
+
+[sub_resource type="Resource" id="Resource_81r6g"]
+script = ExtResource("5_jcd4p")
+amount = 1
+metadata/_custom_type_script = "uid://bkwbh870ebmf0"
+
+[sub_resource type="Resource" id="Resource_h0t8b"]
+script = ExtResource("5_jcd4p")
+metadata/_custom_type_script = "uid://bkwbh870ebmf0"
+
+[sub_resource type="Resource" id="Resource_uacia"]
+script = ExtResource("5_jcd4p")
+amount = 3
+metadata/_custom_type_script = "uid://bkwbh870ebmf0"
+
+[sub_resource type="Resource" id="Resource_yk7ts"]
+script = ExtResource("5_jcd4p")
+amount = 4
+size = 1.0
+speed = 2.0
+metadata/_custom_type_script = "uid://bkwbh870ebmf0"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mf4mk"]
 albedo_texture = ExtResource("4_j5jx5")
@@ -24,6 +47,11 @@ player_scene = NodePath("Player")
 
 [node name="Player" parent="." unique_id=1322533949 instance=ExtResource("2_bl13t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013251185, 0)
+
+[node name="SawbladeAttack" parent="Player" unique_id=2059723613 instance=ExtResource("5_at5dv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3596239, 0)
+level_list = Array[ExtResource("5_jcd4p")]([SubResource("Resource_81r6g"), SubResource("Resource_h0t8b"), SubResource("Resource_uacia"), SubResource("Resource_yk7ts")])
+starting_level = 4
 
 [node name="Plane" type="MeshInstance3D" parent="." unique_id=9169041]
 transform = Transform3D(3.014987, 0, 0, 0, 1.0000008, 0, 0, 0, 2.8753734, -0.44517255, 0, -0.44577932)
