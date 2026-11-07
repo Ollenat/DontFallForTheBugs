@@ -2,6 +2,10 @@
 
 [ext_resource type="Script" uid="uid://17k8enhf6tui" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Material" uid="uid://ba5hc5c6roymc" path="res://materials/PlayerMaterial.tres" id="2_g2els"]
+[ext_resource type="Script" uid="uid://b0gsvjudddas2" path="res://scripts/Components/ClosestEntityComponent.gd" id="3_tuyoq"]
+[ext_resource type="Script" uid="uid://cdluj7yafnmrg" path="res://scripts/Components/AutoFireComponent.gd" id="4_fjrip"]
+[ext_resource type="PackedScene" uid="uid://dfuhg62lmdh0c" path="res://scenes/straight_projectile.tscn" id="5_tuyoq"]
+[ext_resource type="Script" uid="uid://c326gf7jxfjtd" path="res://scripts/Components/MovementComponent.gd" id="6_tuyoq"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_ksfn8"]
 material = ExtResource("2_g2els")
@@ -9,6 +13,9 @@ material = ExtResource("2_g2els")
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qnpof"]
 radius = 0.26416016
 height = 0.6963501
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dqkch"]
+radius = 6.549458
 
 [node name="Player" type="CharacterBody3D" unique_id=1322533949]
 script = ExtResource("1_g2els")
@@ -20,3 +27,24 @@ mesh = SubResource("QuadMesh_ksfn8")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2056103626]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41776145, 0)
 shape = SubResource("CapsuleShape3D_qnpof")
+
+[node name="ClosestEntityComponent" type="Area3D" parent="." unique_id=1160266600]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41776145, 0)
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("3_tuyoq")
+metadata/_custom_type_script = "uid://b0gsvjudddas2"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClosestEntityComponent" unique_id=286368150]
+shape = SubResource("SphereShape3D_dqkch")
+
+[node name="AutoFireComponent" type="Node3D" parent="." unique_id=1065253758 node_paths=PackedStringArray("closest_entity_component")]
+script = ExtResource("4_fjrip")
+projectile_scene = ExtResource("5_tuyoq")
+closest_entity_component = NodePath("../ClosestEntityComponent")
+metadata/_custom_type_script = "uid://cdluj7yafnmrg"
+
+[node name="MovementComponent" type="Node" parent="." unique_id=1771126397 node_paths=PackedStringArray("body")]
+script = ExtResource("6_tuyoq")
+body = NodePath("..")
+metadata/_custom_type_script = "uid://c326gf7jxfjtd"
