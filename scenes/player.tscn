@@ -42,7 +42,6 @@ shape = SubResource("SphereShape3D_dqkch")
 script = ExtResource("4_fjrip")
 projectile_scene = ExtResource("5_tuyoq")
 closest_entity_component = NodePath("../ClosestEntityComponent")
-firing_rate = 0
 metadata/_custom_type_script = "uid://cdluj7yafnmrg"
 
 [node name="MovementComponent" type="Node" parent="." unique_id=1771126397 node_paths=PackedStringArray("body")]

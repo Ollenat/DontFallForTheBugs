@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cpjc2oey3cvkj"]
+
+[node name="DamageNumber" type="Label3D" unique_id=2061096296]
+billboard = 1
+texture_filter = 0
+text = "Damage"

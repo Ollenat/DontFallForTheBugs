@@ -17,11 +17,13 @@ func _ready() -> void:
 func damage(amount: int) -> void:
 	var old := current_health
 	current_health = max(0, current_health - amount)
+	DamageNumbers.spawn(amount, global_position + Vector3.UP * 1.1)
 	if current_health == 0:
 		died.emit()
-		get_parent().queue_free() #temp
+		get_parent().queue_free() # temp
 	elif amount != 0:
 			damaged.emit(old, current_health)
+			
 
 func heal(amount: int) -> void:
 	var old := current_health
