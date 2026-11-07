@@ -1,0 +1,128 @@
+[gd_scene format=3 uid="uid://cuqtvo6v5digc"]
+
+[ext_resource type="Script" uid="uid://7cx8dkl338it" path="res://scripts/card.gd" id="1_card"]
+[ext_resource type="Theme" uid="uid://c6vb2s0kb1r6c" path="res://themes/Title_theme.tres" id="2_ktuci"]
+[ext_resource type="Theme" uid="uid://ccmby4aqakgno" path="res://themes/Text_theme.tres" id="3_kg30u"]
+
+[sub_resource type="StyleBoxFlat" id="Style_normal"]
+bg_color = Color(0.27058825, 0.16078432, 0.24705882, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.36, 0.41, 0.6, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.35)
+shadow_size = 6
+shadow_offset = Vector2(0, 4)
+
+[sub_resource type="StyleBoxFlat" id="Style_pressed"]
+bg_color = Color(0.12722059, 0.06552558, 0.11546916, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.8, 0.35, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="Style_hover"]
+bg_color = Color(0.1882353, 0.105882354, 0.17254902, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.8, 0.35, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.45)
+shadow_size = 10
+shadow_offset = Vector2(0, 6)
+
+[sub_resource type="StyleBoxFlat" id="Style_focus"]
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.8, 0.35, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="PickCard" type="Button" unique_id=637542216]
+custom_minimum_size = Vector2(480, 168)
+theme_override_styles/normal = SubResource("Style_normal")
+theme_override_styles/pressed = SubResource("Style_pressed")
+theme_override_styles/hover = SubResource("Style_hover")
+theme_override_styles/hover_pressed = SubResource("Style_pressed")
+theme_override_styles/focus = SubResource("Style_focus")
+script = ExtResource("1_card")
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=465786663]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 14
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 14
+theme_override_constants/margin_bottom = 14
+
+[node name="Row" type="HBoxContainer" parent="Margin" unique_id=888972336]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 14
+
+[node name="Art" type="ColorRect" parent="Margin/Row" unique_id=1558119307]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.3, 0.45, 0.8, 1)
+
+[node name="Icon" type="TextureRect" parent="Margin/Row/Art" unique_id=709463661]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Text" type="VBoxContainer" parent="Margin/Row" unique_id=795512712]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 6
+
+[node name="CardTitle" type="Label" parent="Margin/Row/Text" unique_id=1268599153]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_ktuci")
+theme_override_font_sizes/font_size = 24
+text = "Card"
+
+[node name="CardDescription" type="Label" parent="Margin/Row/Text" unique_id=254216564]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(308, 111)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("3_kg30u")
+theme_override_font_sizes/font_size = 16
+text = "Card description"
+autowrap_mode = 3

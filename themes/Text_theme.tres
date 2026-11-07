@@ -1,7 +1,7 @@
 [gd_resource type="Theme" format=3 uid="uid://ccmby4aqakgno"]
 
-[ext_resource type="FontFile" uid="uid://bsc21ne0f4ofo" path="res://SilomBol.ttf" id="1_bpic7"]
-[ext_resource type="StyleBox" uid="uid://dclrggj4ms8i7" path="res://Button_Style.tres" id="2_gbh2n"]
+[ext_resource type="FontFile" uid="uid://bsc21ne0f4ofo" path="res://themes/SilomBol.ttf" id="1_bpic7"]
+[ext_resource type="StyleBox" uid="uid://dclrggj4ms8i7" path="res://themes/Button_Style.tres" id="2_gbh2n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ei832"]
 content_margin_left = 4.0

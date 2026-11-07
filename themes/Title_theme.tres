@@ -1,6 +1,6 @@
 [gd_resource type="Theme" format=3 uid="uid://c6vb2s0kb1r6c"]
 
-[ext_resource type="FontFile" uid="uid://bsc21ne0f4ofo" path="res://SilomBol.ttf" id="1_3k5xk"]
+[ext_resource type="FontFile" uid="uid://bsc21ne0f4ofo" path="res://themes/SilomBol.ttf" id="1_3k5xk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a2l2q"]
 content_margin_left = 4.0

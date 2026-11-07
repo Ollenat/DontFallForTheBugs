@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://bsc21ne0f4ofo"
-path="res://.godot/imported/SilomBol.ttf-d8ab98010045458930518b9bf7985fc2.fontdata"
+path="res://.godot/imported/SilomBol.ttf-ac20a67c2ffa823425d49df9aff4e60f.fontdata"
 
 [deps]
 
-source_file="res://SilomBol.ttf"
-dest_files=["res://.godot/imported/SilomBol.ttf-d8ab98010045458930518b9bf7985fc2.fontdata"]
+source_file="res://themes/SilomBol.ttf"
+dest_files=["res://.godot/imported/SilomBol.ttf-ac20a67c2ffa823425d49df9aff4e60f.fontdata"]
 
 [params]
 

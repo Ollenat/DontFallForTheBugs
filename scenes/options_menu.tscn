@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://drjoxqf3unms5"]
 
-[ext_resource type="Script" uid="uid://dj8h30v0dc3nt" path="res://options_menu.gd" id="1_options"]
-[ext_resource type="Theme" uid="uid://c6vb2s0kb1r6c" path="res://Title_theme.tres" id="2_hm4m4"]
-[ext_resource type="Theme" uid="uid://ccmby4aqakgno" path="res://Text_theme.tres" id="3_lfjc7"]
+[ext_resource type="Script" uid="uid://dj8h30v0dc3nt" path="res://scripts/options_menu.gd" id="1_options"]
+[ext_resource type="Theme" uid="uid://c6vb2s0kb1r6c" path="res://themes/Title_theme.tres" id="2_hm4m4"]
+[ext_resource type="Theme" uid="uid://ccmby4aqakgno" path="res://themes/Text_theme.tres" id="3_lfjc7"]
 
 [node name="OptionsMenu" type="Control" unique_id=1719612646]
 layout_mode = 3
