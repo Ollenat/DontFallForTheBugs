@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://dex8p4hlox0qr"]
+
+[ext_resource type="Script" uid="uid://cuiv74tju5gh" path="res://scripts/scatter.gd" id="1_01f1r"]
+[ext_resource type="PackedScene" uid="uid://cr602201s6jea" path="res://scenes/enemy.tscn" id="2_1kd42"]
+[ext_resource type="PackedScene" uid="uid://bloqgrua0hxmo" path="res://scenes/player.tscn" id="3_fo014"]
+[ext_resource type="PackedScene" uid="uid://d2bkarfgvyvwd" path="res://scenes/sawblade_attack.tscn" id="4_qqaut"]
+[ext_resource type="Script" uid="uid://bkwbh870ebmf0" path="res://resources/sawblade.gd" id="5_48gep"]
+[ext_resource type="PackedScene" uid="uid://bxgv70tunet63" path="res://scenes/Floor.tscn" id="7_01f1r"]
+[ext_resource type="Script" uid="uid://cjykh2us57ml5" path="res://scripts/Components/SmoothFollowComponent.gd" id="7_ar6iu"]
+[ext_resource type="Texture2D" uid="uid://dalw2gq60am3d" path="res://textures/Floor1.png" id="9_48gep"]
+[ext_resource type="PackedScene" uid="uid://ddmdxer31yoeq" path="res://scenes/WorldEnvironment.tscn" id="9_qqaut"]
+[ext_resource type="Texture2D" uid="uid://d63gh4t7g2bi" path="res://textures/Floor2.png" id="10_b3neb"]
+[ext_resource type="Texture2D" uid="uid://d0o705c1x5tfq" path="res://textures/Floor3.png" id="11_48gep"]
+
+[sub_resource type="Resource" id="Resource_81r6g"]
+script = ExtResource("5_48gep")
+amount = 1
+metadata/_custom_type_script = "uid://bkwbh870ebmf0"
+
+[sub_resource type="Resource" id="Resource_h0t8b"]
+script = ExtResource("5_48gep")
+metadata/_custom_type_script = "uid://bkwbh870ebmf0"
+
+[sub_resource type="Resource" id="Resource_uacia"]
+script = ExtResource("5_48gep")
+amount = 3
+metadata/_custom_type_script = "uid://bkwbh870ebmf0"
+
+[sub_resource type="Resource" id="Resource_yk7ts"]
+script = ExtResource("5_48gep")
+amount = 4
+size = 1.0
+speed = 2.0
+metadata/_custom_type_script = "uid://bkwbh870ebmf0"
+
+[node name="Node3D" type="Node3D" unique_id=1880461184 node_paths=PackedStringArray("player_scene")]
+script = ExtResource("1_01f1r")
+enemy_scene = ExtResource("2_1kd42")
+player_scene = NodePath("Player")
+
+[node name="Player" parent="." unique_id=1322533949 instance=ExtResource("3_fo014")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013251185, 0)
+
+[node name="SawbladeAttack" parent="Player" unique_id=2059723613 instance=ExtResource("4_qqaut")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3596239, 0)
+level_list = Array[ExtResource("5_48gep")]([SubResource("Resource_81r6g"), SubResource("Resource_h0t8b"), SubResource("Resource_uacia"), SubResource("Resource_yk7ts")])
+starting_level = 4
+
+[node name="SmoothFollowComponent" type="Node3D" parent="." unique_id=637657258 node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013251185, 0)
+script = ExtResource("7_ar6iu")
+target = NodePath("../Player")
+metadata/_custom_type_script = "uid://cjykh2us57ml5"
+
+[node name="Camera3D" type="Camera3D" parent="SmoothFollowComponent" unique_id=1143918028]
+transform = Transform3D(0.7071068, -0.5, 0.5, 0, 0.7071068, 0.70710677, -0.7071068, -0.5, 0.5, 2.5, 4.0930614, 2.5)
+projection = 1
+current = true
+size = 7.072
+
+[node name="WorldEnvironment" parent="." unique_id=1337243406 instance=ExtResource("9_qqaut")]
+
+[node name="Floor" parent="." unique_id=2124511946 instance=ExtResource("7_01f1r")]
+transform = Transform3D(20.055, 0, 0, 0, 20.055, 0, 0, 0, 20.055, 0, 0, 0)
+floor_texture = ExtResource("9_48gep")
+
+[node name="Floor2" parent="." unique_id=1316783687 instance=ExtResource("7_01f1r")]
+transform = Transform3D(20.055, 0, 0, 0, 20.055, 0, 0, 0, 20.055, 0, -10, 0)
+floor_texture = ExtResource("10_b3neb")
+
+[node name="Floor3" parent="." unique_id=1778474817 instance=ExtResource("7_01f1r")]
+transform = Transform3D(20.055, 0, 0, 0, 20.055, 0, 0, 0, 20.055, 0, -20, 0)
+floor_texture = ExtResource("11_48gep")

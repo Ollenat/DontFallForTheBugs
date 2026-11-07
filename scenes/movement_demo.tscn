@@ -1,14 +1,11 @@
 [gd_scene format=3 uid="uid://cne6elobmttcl"]
 
-[ext_resource type="Texture2D" uid="uid://bjdl1lp4hhsgd" path="res://textures/PNG/Orange/texture_05.png" id="1_x07hh"]
 [ext_resource type="PackedScene" uid="uid://bloqgrua0hxmo" path="res://scenes/player.tscn" id="2_pftnk"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mf4mk"]
-albedo_texture = ExtResource("1_x07hh")
-uv1_scale = Vector3(35, 35, 35)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x07hh"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ksfn8"]
-material = SubResource("StandardMaterial3D_mf4mk")
+material = SubResource("StandardMaterial3D_x07hh")
 size = Vector2(15.275, 14.99)
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_pftnk"]
@@ -16,16 +13,13 @@ data = PackedVector3Array(7.6375, 0, 7.495, -7.6375, 0, 7.495, 7.6375, 0, -7.495
 
 [node name="Node3D" type="Node3D" unique_id=1880461184]
 
-[node name="Plane" type="MeshInstance3D" parent="." unique_id=1632524678]
+[node name="Floor1" type="MeshInstance3D" parent="." unique_id=1632524678]
 transform = Transform3D(3.014987, 0, 0, 0, 1.0000008, 0, 0, 0, 2.8753734, -0.44517255, 0, -0.44577932)
 mesh = SubResource("PlaneMesh_ksfn8")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Plane" unique_id=1104107167]
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor1" unique_id=1104107167]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Plane/StaticBody3D" unique_id=1522753296]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor1/StaticBody3D" unique_id=1522753296]
 shape = SubResource("ConcavePolygonShape3D_pftnk")
 
 [node name="Player" parent="." unique_id=1322533949 instance=ExtResource("2_pftnk")]
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=743631307]
-transform = Transform3D(1, 0, 0, 0, 0.20606452, 0.97853845, 0, -0.97853845, 0.20606452, 0, 4.153498, 0)

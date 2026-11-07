@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bxgv70tunet63"]
+
+[ext_resource type="Script" uid="uid://tdbn21cynpa5" path="res://scripts/floor.gd" id="1_dmu3r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dmu3r"]
+resource_local_to_scene = true
+shading_mode = 0
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_qnpof"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dmu3r"]
+size = Vector3(2, 0, 2)
+
+[node name="Floor" type="StaticBody3D" unique_id=2124511946]
+script = ExtResource("1_dmu3r")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=767536464]
+material_override = SubResource("StandardMaterial3D_dmu3r")
+mesh = SubResource("PlaneMesh_qnpof")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=880173969]
+shape = SubResource("BoxShape3D_dmu3r")
