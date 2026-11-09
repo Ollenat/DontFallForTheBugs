@@ -8,12 +8,20 @@ extends CharacterBody3D
 @export var separation_strength := 1.5
 @export var gravity := 20.0
 
+@onready var sprite: MeshInstance3D = $Sprite
+
 var _separation := Vector2.ZERO
 var _tick := 0
+var _sprite_material: StandardMaterial3D
 
 func _ready() -> void:
 	add_to_group("enemies")
 	_tick = randi() % 4  # sprider ut separationsberäkningen mellan fiender
+	_sprite_material = sprite.get_active_material(0) as StandardMaterial3D
+	if _sprite_material:
+		_sprite_material = _sprite_material.duplicate()
+		_sprite_material.resource_local_to_scene = true
+		sprite.material_override = _sprite_material
 	if player == null:
 		push_error("Player was not assigned on enemy")
 
@@ -43,6 +51,23 @@ func _physics_process(delta: float) -> void:
 		velocity.y -= gravity * delta
 
 	move_and_slide()
+	_update_sprite_facing()
+
+func _update_sprite_facing() -> void:
+	var camera := get_viewport().get_camera_3d()
+	if not camera or not sprite:
+		return
+
+	var camera_right := camera.global_basis.x
+	var enemy_to_player := player.global_position - global_position
+	var screen_horizontal := enemy_to_player.dot(camera_right)
+	if _sprite_material:
+		if screen_horizontal > 0.0:
+			_sprite_material.uv1_scale.x = -1.0
+			_sprite_material.uv1_offset.x = 1.0
+		else:
+			_sprite_material.uv1_scale.x = 1.0
+			_sprite_material.uv1_offset.x = 0.0
 
 func _calc_separation(pos: Vector2) -> Vector2:
 	var result := Vector2.ZERO

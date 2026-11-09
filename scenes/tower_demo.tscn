@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://bou10hsph6chp"]
+
+[ext_resource type="Script" uid="uid://cuiv74tju5gh" path="res://scripts/scatter.gd" id="1_ejbed"]
+[ext_resource type="PackedScene" uid="uid://cr602201s6jea" path="res://scenes/enemy.tscn" id="2_nawif"]
+[ext_resource type="PackedScene" uid="uid://bloqgrua0hxmo" path="res://scenes/player.tscn" id="3_yxx8r"]
+[ext_resource type="PackedScene" uid="uid://d2bkarfgvyvwd" path="res://scenes/sawblade_attack.tscn" id="4_mnh10"]
+[ext_resource type="Script" uid="uid://bkwbh870ebmf0" path="res://resources/sawblade.gd" id="5_lh67h"]
+[ext_resource type="Script" uid="uid://cjykh2us57ml5" path="res://scripts/Components/SmoothFollowComponent.gd" id="6_g5gld"]
+[ext_resource type="PackedScene" uid="uid://ddmdxer31yoeq" path="res://scenes/world_environment.tscn" id="7_vx6im"]
+[ext_resource type="PackedScene" uid="uid://bbfccshh754ry" path="res://scenes/Tower.tscn" id="8_vo66m"]
+[ext_resource type="PackedScene" uid="uid://bu8ppka72usho" path="res://scenes/music_player.tscn" id="9_5o4ac"]
+
+[sub_resource type="Resource" id="Resource_81r6g"]
+script = ExtResource("5_lh67h")
+amount = 1
+metadata/_custom_type_script = "uid://bkwbh870ebmf0"
+
+[sub_resource type="Resource" id="Resource_h0t8b"]
+script = ExtResource("5_lh67h")
+metadata/_custom_type_script = "uid://bkwbh870ebmf0"
+
+[sub_resource type="Resource" id="Resource_uacia"]
+script = ExtResource("5_lh67h")
+amount = 3
+metadata/_custom_type_script = "uid://bkwbh870ebmf0"
+
+[sub_resource type="Resource" id="Resource_yk7ts"]
+script = ExtResource("5_lh67h")
+amount = 4
+size = 1.0
+speed = 2.0
+metadata/_custom_type_script = "uid://bkwbh870ebmf0"
+
+[node name="Node3D" type="Node3D" unique_id=1880461184 node_paths=PackedStringArray("player_scene")]
+script = ExtResource("1_ejbed")
+enemy_scene = ExtResource("2_nawif")
+player_scene = NodePath("Player")
+
+[node name="Player" parent="." unique_id=1322533949 instance=ExtResource("3_yxx8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013251185, 0)
+
+[node name="SawbladeAttack" parent="Player" unique_id=2059723613 instance=ExtResource("4_mnh10")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3596239, 0)
+level_list = Array[ExtResource("5_lh67h")]([SubResource("Resource_81r6g"), SubResource("Resource_h0t8b"), SubResource("Resource_uacia"), SubResource("Resource_yk7ts")])
+starting_level = 4
+
+[node name="SmoothFollowComponent" type="Node3D" parent="." unique_id=637657258 node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013251185, 0)
+script = ExtResource("6_g5gld")
+target = NodePath("../Player")
+metadata/_custom_type_script = "uid://cjykh2us57ml5"
+
+[node name="Camera3D" type="Camera3D" parent="SmoothFollowComponent" unique_id=1143918028]
+transform = Transform3D(0.7071068, -0.5, 0.5, 0, 0.7071068, 0.70710677, -0.7071068, -0.5, 0.5, 10, 15, 10)
+projection = 1
+current = true
+size = 7.072
+
+[node name="WorldEnvironment" parent="." unique_id=1337243406 instance=ExtResource("7_vx6im")]
+
+[node name="Tower" parent="." unique_id=636314010 instance=ExtResource("8_vo66m")]
+floors_buffer = 9
+editor_floor_count = 5
+max_debris = 268
+
+[node name="MusicPlayer" parent="." unique_id=1959264914 instance=ExtResource("9_5o4ac")]

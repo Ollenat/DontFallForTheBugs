@@ -7,10 +7,10 @@
 [ext_resource type="Script" uid="uid://bkwbh870ebmf0" path="res://resources/sawblade.gd" id="5_48gep"]
 [ext_resource type="PackedScene" uid="uid://bxgv70tunet63" path="res://scenes/Floor.tscn" id="7_01f1r"]
 [ext_resource type="Script" uid="uid://cjykh2us57ml5" path="res://scripts/Components/SmoothFollowComponent.gd" id="7_ar6iu"]
-[ext_resource type="Texture2D" uid="uid://dalw2gq60am3d" path="res://textures/Floor1.png" id="9_48gep"]
-[ext_resource type="PackedScene" uid="uid://ddmdxer31yoeq" path="res://scenes/WorldEnvironment.tscn" id="9_qqaut"]
-[ext_resource type="Texture2D" uid="uid://d63gh4t7g2bi" path="res://textures/Floor2.png" id="10_b3neb"]
-[ext_resource type="Texture2D" uid="uid://d0o705c1x5tfq" path="res://textures/Floor3.png" id="11_48gep"]
+[ext_resource type="Texture2D" uid="uid://dalw2gq60am3d" path="res://textures/PNG/Floors/Floor1.png" id="9_48gep"]
+[ext_resource type="PackedScene" uid="uid://ddmdxer31yoeq" path="res://scenes/world_environment.tscn" id="9_qqaut"]
+[ext_resource type="Texture2D" uid="uid://d63gh4t7g2bi" path="res://textures/PNG/Floors/Floor2.png" id="10_b3neb"]
+[ext_resource type="Texture2D" uid="uid://d0o705c1x5tfq" path="res://textures/PNG/Floors/Floor3.png" id="11_48gep"]
 
 [sub_resource type="Resource" id="Resource_81r6g"]
 script = ExtResource("5_48gep")

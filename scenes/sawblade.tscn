@@ -2,12 +2,15 @@
 
 [ext_resource type="Script" uid="uid://bsfp75yhjuhso" path="res://scripts/Components/DamageAreaComponent.gd" id="1_jbc87"]
 [ext_resource type="Texture2D" uid="uid://cygqfwsjygdiu" path="res://icon.svg" id="2_jbc87"]
+[ext_resource type="Script" uid="uid://con8ab0or84fl" path="res://scripts/sawblade_visual.gd" id="3_visual"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qt3ec"]
 radius = 0.5240297
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ajshl"]
+transparency = 1
 albedo_texture = ExtResource("2_jbc87")
+texture_filter = 0
 billboard_mode = 1
 billboard_keep_scale = true
 
@@ -15,6 +18,7 @@ billboard_keep_scale = true
 material = SubResource("StandardMaterial3D_ajshl")
 
 [node name="Sawblade" type="Node3D" unique_id=1442289867]
+script = ExtResource("3_visual")
 
 [node name="DamageAreaComponent" type="Area3D" parent="." unique_id=507946474]
 collision_layer = 0
