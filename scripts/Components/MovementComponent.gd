@@ -3,9 +3,9 @@ class_name MovementComponent
 
 @export var body: CharacterBody3D
 
-@export var move_speed: float = 7.0
-@export var acceleration: float = 14.0
-@export var friction: float = 10.0
+@export var move_speed: float = 5.5
+@export var acceleration: float = 18.0
+@export var friction: float = 24.0
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
