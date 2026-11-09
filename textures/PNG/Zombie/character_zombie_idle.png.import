@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://d3bgkpgon3j4t"
 path.s3tc="res://.godot/imported/character_zombie_idle.png-0663d3ee6c491c9be1a6bdba21174089.s3tc.ctex"
+path.etc2="res://.godot/imported/character_zombie_idle.png-0663d3ee6c491c9be1a6bdba21174089.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://textures/PNG/Zombie/character_zombie_idle.png"
-dest_files=["res://.godot/imported/character_zombie_idle.png-0663d3ee6c491c9be1a6bdba21174089.s3tc.ctex"]
+dest_files=["res://.godot/imported/character_zombie_idle.png-0663d3ee6c491c9be1a6bdba21174089.s3tc.ctex", "res://.godot/imported/character_zombie_idle.png-0663d3ee6c491c9be1a6bdba21174089.etc2.ctex"]
 
 [params]
 
