@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://sqh0rduxhjgi"]
+
+[ext_resource type="Script" uid="uid://dw2emjv6l0lnf" path="res://scripts/main_menu.gd" id="1_ekxnf"]
+[ext_resource type="Theme" uid="uid://ccmby4aqakgno" path="res://themes/Text_theme.tres" id="1_l6cm7"]
+[ext_resource type="Theme" uid="uid://c6vb2s0kb1r6c" path="res://themes/Title_theme.tres" id="2_bqqt6"]
+
+[node name="MainMenu" type="Control" unique_id=1964277151]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ekxnf")
+game_scene = "res://scenes/test.tscn"
+
+[node name="Background" type="ColorRect" parent="." unique_id=897543235]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.18039216, 0.13333334, 0.18431373, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1260595905]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=397734320]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer" unique_id=482128846]
+unique_name_in_owner = true
+layout_mode = 2
+offset_transform_enabled = true
+theme = ExtResource("2_bqqt6")
+theme_override_constants/line_spacing = 3
+theme_override_constants/paragraph_spacing = 0
+theme_override_font_sizes/font_size = 68
+text = "Don't Fall For The Bugs!"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer" unique_id=1148577367]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=568629401]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 42)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_l6cm7")
+text = "Start Game"
+
+[node name="OptionsButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=259746786]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_l6cm7")
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=101166948]
+unique_name_in_owner = true
+self_modulate = Color(0.879195, 0, 0.20913827, 1)
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_l6cm7")
+theme_override_colors/font_color = Color(0.4725, 0.052892152, 0.096029416, 1)
+theme_override_colors/font_pressed_color = Color(0.6901961, 0.09411765, 0.15686275, 1)
+theme_override_colors/font_hover_color = Color(0.6071997, 0.07852694, 0.13287646, 1)
+text = "Quit"

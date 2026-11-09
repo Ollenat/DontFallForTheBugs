@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cu1gv1xj4tmt3"]
+
+[ext_resource type="Shader" uid="uid://bdg08arhowand" path="res://shaders/blured.gdshader" id="1_v40wc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qnpof"]
+shader = ExtResource("1_v40wc")
+shader_parameter/lod = 2.0
+
+[node name="pick3" type="CanvasLayer" unique_id=1585868673]
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=740497260]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CenterContainer" unique_id=931461610]
+material = SubResource("ShaderMaterial_qnpof")
+layout_mode = 2
+color = Color(0.24405202, 0.24405205, 0.24405202, 0.28235295)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1565673990]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=862733192]
+layout_mode = 2
+text = "Pick 1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer" unique_id=75012721]
+layout_mode = 2

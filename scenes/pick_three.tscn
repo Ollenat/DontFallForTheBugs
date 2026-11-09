@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://cmdbva520kwn4"]
+
+[ext_resource type="Script" uid="uid://d24w2p8i418ah" path="res://scripts/pick_three.gd" id="1_pick"]
+[ext_resource type="PackedScene" uid="uid://cuqtvo6v5digc" path="res://scenes/card.tscn" id="2_card"]
+
+[sub_resource type="StyleBoxFlat" id="Style_banner"]
+bg_color = Color(0.18039216, 0.13333334, 0.18431373, 0.78431374)
+border_width_left = 4
+border_width_right = 4
+border_color = Color(0.9843137, 0.7254902, 0.32941177, 1)
+corner_radius_top_left = 14
+corner_radius_top_right = 14
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+shadow_color = Color(0, 0, 0, 0.5)
+shadow_size = 16
+
+[node name="PickThree" type="Control" unique_id=301841975]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pick")
+
+[node name="Dim" type="ColorRect" parent="." unique_id=294933916]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="Center" type="CenterContainer" parent="." unique_id=2010453793]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Banner" type="PanelContainer" parent="Center" unique_id=1829571555]
+layout_mode = 2
+theme_override_styles/panel = SubResource("Style_banner")
+
+[node name="CardArea" type="MarginContainer" parent="Center/Banner" unique_id=1340339513]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 70
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 70
+
+[node name="Cards" type="VBoxContainer" parent="Center/Banner/CardArea" unique_id=1593218698]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Card1" parent="Center/Banner/CardArea/Cards" unique_id=2115863100 instance=ExtResource("2_card")]
+layout_mode = 2
+card_title = "Sawblade"
+card_description = "Wield a deadly spinning blade around you"
+art_color = Color(0.9138582, 0, 0.24275056, 1)
+
+[node name="Card2" parent="Center/Banner/CardArea/Cards" unique_id=1527277097 instance=ExtResource("2_card")]
+layout_mode = 2
+card_title = "Axe"
+card_description = "Throw a big sharp object at your enemies"
+art_color = Color(0.3, 0.5, 0.85, 1)
+
+[node name="Card3" parent="Center/Banner/CardArea/Cards" unique_id=1861523092 instance=ExtResource("2_card")]
+layout_mode = 2
+autowrap_mode = 1
+card_title = "Flyswatter"
+card_description = "Use a big swatting machine to annihilate your foesssssssssss"
+art_color = Color(0.34376898, 0.53572804, 1.92523e-07, 1)
