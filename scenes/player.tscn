@@ -6,9 +6,23 @@
 [ext_resource type="Script" uid="uid://cdluj7yafnmrg" path="res://scripts/Components/AutoFireComponent.gd" id="4_fjrip"]
 [ext_resource type="PackedScene" uid="uid://dfuhg62lmdh0c" path="res://scenes/straight_projectile.tscn" id="5_tuyoq"]
 [ext_resource type="Script" uid="uid://c326gf7jxfjtd" path="res://scripts/Components/MovementComponent.gd" id="6_tuyoq"]
+[ext_resource type="Script" path="res://scripts/player_visual.gd" id="7_visual"]
+[ext_resource type="Texture2D" path="res://textures/pixel_shadow.svg" id="8_shadow"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_ksfn8"]
 material = ExtResource("2_g2els")
+size = Vector2(0.666667, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_shadow"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("8_shadow")
+texture_filter = 0
+cull_mode = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_shadow"]
+material = SubResource("StandardMaterial3D_shadow")
+size = Vector2(0.56, 0.56)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qnpof"]
 radius = 0.26416016
@@ -23,6 +37,15 @@ script = ExtResource("1_g2els")
 [node name="Sprite" type="MeshInstance3D" parent="." unique_id=136710215]
 transform = Transform3D(0.70710677, -0.49999997, 0.49999997, 0, 0.70710677, 0.70710677, -0.70710677, -0.49999997, 0.49999997, 0, 0.50002253, 0)
 mesh = SubResource("QuadMesh_ksfn8")
+
+[node name="Shadow" type="MeshInstance3D" parent="." unique_id=136710216]
+position = Vector3(0, -0.35, 0)
+rotation_degrees = Vector3(-90, 0, 0)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_shadow")
+
+[node name="PlayerVisual" type="Node" parent="."]
+script = ExtResource("7_visual")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2056103626]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41776145, 0)

@@ -9,6 +9,8 @@ extends CharacterBody3D
 @export var gravity := 20.0
 
 @onready var sprite: MeshInstance3D = $Sprite
+@onready var shadow: MeshInstance3D = $Shadow
+@onready var health: HealthComponent = $HealthComponent
 
 var _separation := Vector2.ZERO
 var _tick := 0
@@ -22,8 +24,13 @@ func _ready() -> void:
 		_sprite_material = _sprite_material.duplicate()
 		_sprite_material.resource_local_to_scene = true
 		sprite.material_override = _sprite_material
+	health.died.connect(_on_died)
 	if player == null:
 		push_error("Player was not assigned on enemy")
+
+func _on_died() -> void:
+	if _sprite_material:
+		_sprite_material.albedo_color = Color(1.0, 0.1, 0.1, 1.0)
 
 func _physics_process(delta: float) -> void:
 	if player == null:
@@ -51,6 +58,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y -= gravity * delta
 
 	move_and_slide()
+	shadow.visible = is_on_floor()
 	_update_sprite_facing()
 
 func _update_sprite_facing() -> void:

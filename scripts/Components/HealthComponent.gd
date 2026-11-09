@@ -2,6 +2,7 @@ extends Area3D
 class_name HealthComponent
 
 @export var max_health: int = 100
+@export var death_delay: float = 0.0
 var current_health: int
 
 signal died()
@@ -20,7 +21,10 @@ func damage(amount: int) -> void:
 	DamageNumbers.spawn(amount, global_position + Vector3.UP * 1.1)
 	if current_health == 0:
 		died.emit()
-		get_parent().queue_free() # temp
+		if death_delay > 0.0:
+			get_tree().create_timer(death_delay).timeout.connect(get_parent().queue_free)
+		else:
+			get_parent().queue_free() # temp
 	elif amount != 0:
 			damaged.emit(old, current_health)
 			
