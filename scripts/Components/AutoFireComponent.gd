@@ -9,15 +9,19 @@ extends Node3D
 @export var closest_entity_component: ClosestEntityComponent
 ## projectiles per second
 @export var firing_rate: int = 1
+@export var explosion_radius: float = 0.0
 var timer: Timer
 
 func _ready() -> void:
 	timer = Timer.new()
 	add_child(timer)
-
-	timer.wait_time = 1.0 / firing_rate
 	timer.timeout.connect(fire)
+	refresh_rate()
 	timer.start()
+
+func refresh_rate() -> void:
+	if timer:
+		timer.wait_time = 1.0 / float(maxi(firing_rate, 1))
 
 func fire():
 	if closest_entity_component.closest_target != null:
@@ -30,4 +34,5 @@ func fire():
 		print(dir)
 		get_tree().root.add_child(p)
 		p.direction = dir
+		p.explosion_radius = explosion_radius
 		p.global_position = self.global_position

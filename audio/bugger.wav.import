@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://draq6dmcavgre"
-path="res://.godot/imported/Bug.wav-83cde840cb1ae9828178fe93184d9fd0.sample"
+path="res://.godot/imported/bugger.wav-103d00a0e7317e51a6435db65cae06a5.sample"
 
 [deps]
 
-source_file="res://audio/Bug.wav"
-dest_files=["res://.godot/imported/Bug.wav-83cde840cb1ae9828178fe93184d9fd0.sample"]
+source_file="res://audio/bugger.wav"
+dest_files=["res://.godot/imported/bugger.wav-103d00a0e7317e51a6435db65cae06a5.sample"]
 
 [params]
 

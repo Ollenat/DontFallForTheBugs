@@ -40,7 +40,7 @@ data = PackedVector3Array(7.6375, 0, 7.495, -7.6375, 0, 7.495, 7.6375, 0, -7.495
 script = ExtResource("1_at5dv")
 enemy_scene = ExtResource("4_74lek")
 player_scene = NodePath("Player")
-enemy_count = 200
+enemy_count = 0
 
 [node name="Player" parent="." unique_id=1322533949 instance=ExtResource("2_bl13t")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013251185, 0)

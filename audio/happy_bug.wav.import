@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://b8ecek1radm0j"
-path="res://.godot/imported/Oscar bug.wav-cf7f0a969e6508660676939e297a42db.sample"
+path="res://.godot/imported/happy_bug.wav-2d1d30256903fb004b861399d8c08432.sample"
 
 [deps]
 
-source_file="res://audio/Oscar bug.wav"
-dest_files=["res://.godot/imported/Oscar bug.wav-cf7f0a969e6508660676939e297a42db.sample"]
+source_file="res://audio/happy_bug.wav"
+dest_files=["res://.godot/imported/happy_bug.wav-2d1d30256903fb004b861399d8c08432.sample"]
 
 [params]
 

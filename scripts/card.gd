@@ -2,6 +2,8 @@
 class_name PickCard
 extends Button
 
+const MAIN_MENU_THEME: Theme = preload("res://themes/Text_theme.tres")
+
 ## Emitted when this card is clicked, or activated with keyboard / gamepad.
 signal picked(card: PickCard)
 
@@ -34,7 +36,10 @@ signal picked(card: PickCard)
 
 
 func _ready() -> void:
+	theme = MAIN_MENU_THEME
 	_refresh()
+	_title.theme = MAIN_MENU_THEME
+	_description.theme = MAIN_MENU_THEME
 	if not Engine.is_editor_hint():
 		pressed.connect(func() -> void: picked.emit(self))
 

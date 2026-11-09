@@ -1,4 +1,5 @@
 @tool
+class_name TowerFloor
 extends StaticBody3D
 
 @export var floor_texture: Texture2D:
@@ -15,6 +16,9 @@ extends StaticBody3D
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 
 var is_broken: bool = false
+var progress: float = 0.0
+var points: int = 0
+var points_required: int = 20
 const DEBRIS_PER_FRAME: int = 8
 const BREAK_SPAWN_RATIO: float = 0.8
 const GROUND_DESTROY_CHANCE: float = 0.75

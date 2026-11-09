@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://ddmdxer31yoeq" path="res://scenes/world_environment.tscn" id="7_kiw3p"]
 [ext_resource type="PackedScene" uid="uid://bbfccshh754ry" path="res://scenes/Tower.tscn" id="8_400sg"]
 [ext_resource type="PackedScene" uid="uid://bu8ppka72usho" path="res://scenes/music_player.tscn" id="9_g4kob"]
+[ext_resource type="Script" uid="uid://bm8r3gylwd0ai" path="res://scripts/Components/PauseMenu.gd" id="10_pause"]
+[ext_resource type="AudioStream" uid="uid://dkqwha7ajqrah" path="res://audio/intense.wav" id="11_game_music"]
+[ext_resource type="AudioStream" uid="uid://b8ecek1radm0j" path="res://audio/happy_bug.wav" id="12_milestone"]
 
 [sub_resource type="Resource" id="Resource_81r6g"]
 script = ExtResource("5_3xj3m")
@@ -27,7 +30,6 @@ metadata/_custom_type_script = "uid://bkwbh870ebmf0"
 [sub_resource type="Resource" id="Resource_yk7ts"]
 script = ExtResource("5_3xj3m")
 amount = 4
-size = 1.0
 speed = 2.0
 metadata/_custom_type_script = "uid://bkwbh870ebmf0"
 
@@ -35,7 +37,6 @@ metadata/_custom_type_script = "uid://bkwbh870ebmf0"
 script = ExtResource("1_kiw3p")
 enemy_scene = ExtResource("2_400sg")
 player_scene = NodePath("Player")
-enemy_count = 200
 
 [node name="Player" parent="." unique_id=1322533949 instance=ExtResource("3_g4kob")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013251185, 0)
@@ -43,7 +44,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013251185, 0)
 [node name="SawbladeAttack" parent="Player" unique_id=2059723613 instance=ExtResource("4_qy1jj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3596239, 0)
 level_list = Array[ExtResource("5_3xj3m")]([SubResource("Resource_81r6g"), SubResource("Resource_h0t8b"), SubResource("Resource_uacia"), SubResource("Resource_yk7ts")])
-starting_level = 4
 
 [node name="SmoothFollowComponent" type="Node3D" parent="." unique_id=637657258 node_paths=PackedStringArray("target")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.013251185, 0)
@@ -57,12 +57,16 @@ projection = 1
 current = true
 size = 7.072
 
-[node name="Enemy" parent="." unique_id=1577895062 instance=ExtResource("2_400sg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.158809, 0.83835196, 0)
-
 [node name="WorldEnvironment" parent="." unique_id=1337243406 instance=ExtResource("7_kiw3p")]
 
-[node name="Tower" parent="." unique_id=636314010 instance=ExtResource("8_400sg")]
+[node name="Tower" parent="." unique_id=636314010 node_paths=PackedStringArray("player") instance=ExtResource("8_400sg")]
+player = NodePath("../Player")
 editor_floor_count = 5
 
 [node name="MusicPlayer" parent="." unique_id=1959264914 instance=ExtResource("9_g4kob")]
+loop_lead_time = 0.1
+music_stream = ExtResource("11_game_music")
+milestone_sound = ExtResource("12_milestone")
+
+[node name="PauseMenu" type="Node" parent="." unique_id=1959264915]
+script = ExtResource("10_pause")

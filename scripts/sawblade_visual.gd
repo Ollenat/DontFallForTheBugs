@@ -27,6 +27,8 @@ func _ready() -> void:
 	material.resource_local_to_scene = true
 	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	material.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
+	material.render_priority = 10
+	material.no_depth_test = true
 	mesh_instance.material_override = material
 	material.albedo_texture = FRAMES[0]
 

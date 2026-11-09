@@ -11,6 +11,7 @@ const WALK_FRAMES: Array[Texture2D] = [
 @onready var body: CharacterBody3D = get_parent() as CharacterBody3D
 @onready var sprite: MeshInstance3D = body.get_node("Sprite")
 @onready var shadow: MeshInstance3D = body.get_node("Shadow")
+@onready var health: HealthComponent = body.get_node_or_null("HealthComponent") as HealthComponent
 
 var elapsed := 0.0
 var frame_index := 0
@@ -29,6 +30,8 @@ func _ready() -> void:
 	material.texture_filter = BaseMaterial3D.TEXTURE_FILTER_NEAREST
 	sprite.material_override = material
 	material.albedo_texture = IDLE_FRAME
+	if health:
+		health.damaged.connect(_flash_damage)
 
 func _process(delta: float) -> void:
 	shadow.visible = body.is_on_floor()
@@ -64,3 +67,10 @@ func _update_facing() -> void:
 	else:
 		material.uv1_scale.x = -1.0
 		material.uv1_offset.x = 1.0
+
+func _flash_damage(_old_health: int, _new_health: int) -> void:
+	if not material:
+		return
+	var flash := create_tween()
+	flash.tween_property(material, "albedo_color", Color(1.0, 0.08, 0.08, 1.0), 0.05)
+	flash.tween_property(material, "albedo_color", Color.WHITE, 0.2)

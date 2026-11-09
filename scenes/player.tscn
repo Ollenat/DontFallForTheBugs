@@ -8,6 +8,10 @@
 [ext_resource type="Script" uid="uid://c326gf7jxfjtd" path="res://scripts/Components/MovementComponent.gd" id="6_tuyoq"]
 [ext_resource type="Script" path="res://scripts/player_visual.gd" id="7_visual"]
 [ext_resource type="Texture2D" path="res://textures/pixel_shadow.svg" id="8_shadow"]
+[ext_resource type="Script" path="res://scripts/Components/HealthComponent.gd" id="9_health"]
+[ext_resource type="Script" path="res://scripts/Components/PlayerUpgradeComponent.gd" id="10_upgrades"]
+[ext_resource type="Script" path="res://scripts/Components/PlayerHealthHud.gd" id="11_health_hud"]
+[ext_resource type="Script" path="res://scripts/Components/PlayerGameOver.gd" id="12_game_over"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_ksfn8"]
 material = ExtResource("2_g2els")
@@ -33,6 +37,24 @@ radius = 6.549458
 
 [node name="Player" type="CharacterBody3D" unique_id=1322533949]
 script = ExtResource("1_g2els")
+
+[node name="HealthComponent" type="Area3D" parent="." unique_id=1322533950]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("9_health")
+auto_free_on_death = false
+invincibility_duration = 0.5
+passive_regen_per_second = 1.0
+damage_number_color = Color(1, 0.05, 0.05, 1)
+
+[node name="PlayerUpgradeComponent" type="Node" parent="." unique_id=1322533951]
+script = ExtResource("10_upgrades")
+
+[node name="PlayerHealthHud" type="Node" parent="." unique_id=1322533952]
+script = ExtResource("11_health_hud")
+
+[node name="PlayerGameOver" type="Node" parent="." unique_id=1322533953]
+script = ExtResource("12_game_over")
 
 [node name="Sprite" type="MeshInstance3D" parent="." unique_id=136710215]
 transform = Transform3D(0.70710677, -0.49999997, 0.49999997, 0, 0.70710677, 0.70710677, -0.70710677, -0.49999997, 0.49999997, 0, 0.50002253, 0)
@@ -65,6 +87,7 @@ shape = SubResource("SphereShape3D_dqkch")
 script = ExtResource("4_fjrip")
 projectile_scene = ExtResource("5_tuyoq")
 closest_entity_component = NodePath("../ClosestEntityComponent")
+explosion_radius = 0.6
 metadata/_custom_type_script = "uid://cdluj7yafnmrg"
 
 [node name="MovementComponent" type="Node" parent="." unique_id=1771126397 node_paths=PackedStringArray("body")]

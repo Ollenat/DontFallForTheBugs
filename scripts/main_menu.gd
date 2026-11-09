@@ -1,5 +1,7 @@
 extends Control
 
+const SETTINGS_PATH := "user://settings.cfg"
+
 ## Path to the scene that starts when "Start Game" is pressed.
 @export_file("*.tscn") var game_scene: String = "res://scenes/Game.tscn"
 ## Path to the options scene.
@@ -9,11 +11,16 @@ extends Control
 @onready var options_button: Button = %OptionsButton
 @onready var quit_button: Button = %QuitButton
 @onready var title_label: Label = %Title
+@onready var top_score_label: Label = %TopScore
 
 
 func _ready() -> void:
 	# Apply saved volume / fullscreen settings on launch.
 	OptionsMenu.apply_saved_settings()
+	_load_top_score()
+	var music_player: Node = get_node_or_null("/root/MusicPlayer")
+	if music_player and music_player.has_method("play_music"):
+		music_player.play_music()
 
 	start_button.pressed.connect(_on_start_pressed)
 	options_button.pressed.connect(_on_options_pressed)
@@ -28,8 +35,18 @@ func _ready() -> void:
 
 	_animate_title()
 
+func _load_top_score() -> void:
+	var config := ConfigFile.new()
+	var high_score: int = 0
+	if config.load(SETTINGS_PATH) == OK:
+		high_score = int(config.get_value("score", "high_score", 0))
+	top_score_label.text = "TOP SCORE: %d" % high_score
+
 
 func _on_start_pressed() -> void:
+	var music_player: Node = get_node_or_null("/root/MusicPlayer")
+	if music_player and music_player.has_method("stop_music"):
+		music_player.stop_music()
 	if ResourceLoader.exists(game_scene):
 		get_tree().change_scene_to_file(game_scene)
 	else:

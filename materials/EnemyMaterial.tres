@@ -4,10 +4,10 @@
 
 [resource]
 transparency = 2
-cull_mode = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 1
 alpha_antialiasing_edge = 0.3
+cull_mode = 2
 albedo_texture = ExtResource("1_0dcbd")
 emission = Color(1.025, 0.801, 0.729, 1)
 emission_energy_multiplier = 6.78

@@ -1,10 +1,14 @@
 [gd_scene format=3 uid="uid://bu8ppka72usho"]
 
-[ext_resource type="AudioStream" uid="uid://dkqwha7ajqrah" path="res://audio/intense.wav" id="1_music"]
+[ext_resource type="AudioStream" path="res://audio/bugger.wav" id="1_music"]
+[ext_resource type="AudioStream" path="res://audio/happy_bug.wav" id="3_milestone"]
 [ext_resource type="Script" path="res://scripts/music_player.gd" id="2_script"]
 
 [node name="MusicPlayer" type="Node" unique_id=1959264914]
 script = ExtResource("2_script")
+music_stream = ExtResource("1_music")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_music")
+
+[node name="EffectPlayer" type="AudioStreamPlayer" parent="."]

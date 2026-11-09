@@ -2,14 +2,35 @@ extends Node
 class_name MovementComponent
 
 @export var body: CharacterBody3D
+@export var health: HealthComponent
 
 @export var move_speed: float = 5.5
 @export var acceleration: float = 18.0
 @export var friction: float = 24.0
+@export var dash_speed: float = 10.0
+@export var dash_duration: float = 0.15
+@export var dash_cooldown: float = 0.7
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
+var _dash_time_remaining: float = 0.0
+var _dash_available_at_msec: int = 0
+var _dash_direction: Vector3 = Vector3.ZERO
 
 func _physics_process(delta: float) -> void:
+	if _dash_time_remaining > 0.0:
+		_dash_time_remaining -= delta
+		body.velocity.x = _dash_direction.x * dash_speed
+		body.velocity.z = _dash_direction.z * dash_speed
+		body.move_and_slide()
+		return
+
+	if Input.is_action_just_pressed("dash") and Time.get_ticks_msec() >= _dash_available_at_msec:
+		_start_dash()
+		body.velocity.x = _dash_direction.x * dash_speed
+		body.velocity.z = _dash_direction.z * dash_speed
+		body.move_and_slide()
+		return
+
 	# 1. Apply gravity
 	if not body.is_on_floor():
 		body.velocity.y -= gravity * delta
@@ -46,3 +67,21 @@ func _physics_process(delta: float) -> void:
 
 	# 6. Execute motion and collisions
 	body.move_and_slide()
+
+func _start_dash() -> void:
+	var input_dir: Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	var camera := get_viewport().get_camera_3d()
+	var basis: Basis = camera.global_basis if camera else body.global_basis
+	var forward: Vector3 = -basis.z
+	var right: Vector3 = basis.x
+	forward.y = 0.0
+	right.y = 0.0
+	var direction: Vector3 = right.normalized() * input_dir.x + forward.normalized() * -input_dir.y
+	if direction.length_squared() <= 0.0:
+		direction = -body.global_basis.z
+		direction.y = 0.0
+	_dash_direction = direction.normalized()
+	_dash_time_remaining = dash_duration
+	_dash_available_at_msec = Time.get_ticks_msec() + roundi(dash_cooldown * 1000.0)
+	if health:
+		health.grant_invincibility(dash_duration + 0.05)

@@ -1,5 +1,7 @@
 extends Control
 
+const MAIN_MENU_THEME: Theme = preload("res://themes/Text_theme.tres")
+
 ## Emitted after the player picks a card and the cards have slid away.
 ## `index` is the card's position: 0, 1 or 2 (top to bottom).
 signal card_picked(index: int)
@@ -18,6 +20,7 @@ var _locked := false
 
 
 func _ready() -> void:
+	theme = MAIN_MENU_THEME
 	for card in cards_list.get_children():
 		if card is PickCard:
 			card.picked.connect(_on_card_picked)
@@ -29,7 +32,7 @@ func slide_in() -> void:
 	_locked = true # ignore clicks while sliding
 
 	# Hide the cards, then let the container put them back in their slots.
-	var cards := cards_list.get_children()
+	var cards: Array[Node] = cards_list.get_children()
 	for card in cards:
 		card.modulate.a = 0.0
 	cards_list.queue_sort()
@@ -37,16 +40,17 @@ func slide_in() -> void:
 
 	# Bottom card first, so a card never slides across one that already landed.
 	cards.reverse()
-	var tween := create_tween().set_parallel(true)
+	var targets: Array[float] = []
+	var start_positions: Array[float] = []
+	for card in cards:
+		var rest_y: float = card.position.y
+		targets.append(rest_y)
+		start_positions.append(rest_y - _distance_above(card))
 	for i in cards.size():
 		var card: Control = cards[i]
-		var rest_y := card.position.y
-		card.position.y = rest_y - _distance_above(card) # start above the banner
+		card.position.y = start_positions[i] # start above the banner
 		card.modulate.a = 1.0
-		tween.tween_property(card, "position:y", rest_y, card_slide_time) \
-			.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT) \
-			.set_delay(i * card_stagger)
-	await tween.finished
+	await _animate_cards(cards, targets, Tween.EASE_OUT)
 
 	_locked = false
 	cards_list.get_child(0).grab_focus() # keyboard / gamepad can start right away
@@ -54,15 +58,36 @@ func slide_in() -> void:
 
 ## Slides the cards down and out of the banner, one by one.
 func slide_out() -> void:
-	var cards := cards_list.get_children()
+	var cards: Array[Node] = cards_list.get_children()
 	cards.reverse() # bottom card leaves first
-	var tween := create_tween().set_parallel(true)
+	var targets: Array[float] = []
+	for card in cards:
+		targets.append(card.position.y + _distance_below(card))
+	await _animate_cards(cards, targets, Tween.EASE_IN)
+
+func _animate_cards(cards: Array[Node], targets: Array[float], ease_type: Tween.EaseType) -> void:
+	var starts: Array[float] = []
+	for card in cards:
+		starts.append((card as Control).position.y)
+	var started: int = Time.get_ticks_msec()
+	var total_duration: float = card_slide_time + card_stagger * float(maxi(cards.size() - 1, 0))
+	while true:
+		var elapsed: float = float(Time.get_ticks_msec() - started) / 1000.0
+		if elapsed >= total_duration:
+			break
+		for i in cards.size():
+			var card: Control = cards[i]
+			var local_time: float = clampf((elapsed - float(i) * card_stagger) / card_slide_time, 0.0, 1.0)
+			var eased: float = float(Tween.interpolate_value(0.0, 1.0, local_time, 1.0, Tween.TRANS_CUBIC, ease_type))
+			card.position.y = lerpf(starts[i], targets[i], eased)
+		await get_tree().process_frame
 	for i in cards.size():
-		var card: Control = cards[i]
-		tween.tween_property(card, "position:y", card.position.y + _distance_below(card), card_slide_time) \
-			.set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN) \
-			.set_delay(i * card_stagger)
-	await tween.finished
+		(cards[i] as Control).position.y = targets[i]
+
+func _wait_real_seconds(seconds: float) -> void:
+	var started: int = Time.get_ticks_msec()
+	while float(Time.get_ticks_msec() - started) / 1000.0 < seconds:
+		await get_tree().process_frame
 
 
 # How far a card must move up to be completely hidden above the banner.
@@ -84,8 +109,18 @@ func _on_card_picked(card: PickCard) -> void:
 	card.grab_focus()
 	for other in cards_list.get_children():
 		if other != card:
-			create_tween().tween_property(other, "modulate:a", 0.25, 0.25)
+			_fade_card(other as Control)
 
-	await get_tree().create_timer(0.6).timeout
+	await _wait_real_seconds(0.6)
 	await slide_out()
 	card_picked.emit(card.get_index())
+
+func _fade_card(card: Control) -> void:
+	var start_alpha: float = card.modulate.a
+	var started: int = Time.get_ticks_msec()
+	while true:
+		var weight: float = clampf(float(Time.get_ticks_msec() - started) / 250.0, 0.0, 1.0)
+		card.modulate.a = lerpf(start_alpha, 0.25, weight)
+		if weight >= 1.0:
+			return
+		await get_tree().process_frame

@@ -51,6 +51,15 @@ uppercase = true
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 
+[node name="TopScore" type="Label" parent="CenterContainer/VBoxContainer" unique_id=1148577368]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("1_l6cm7")
+theme_override_colors/font_color = Color(1, 0.8862745, 0.5411765, 1)
+theme_override_font_sizes/font_size = 24
+text = "TOP SCORE: 0"
+horizontal_alignment = 1
+
 [node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer" unique_id=568629401]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 42)

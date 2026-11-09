@@ -4,8 +4,8 @@
 
 [resource]
 transparency = 2
-texture_filter = 0
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 albedo_texture = ExtResource("1_c1y6p")
+texture_filter = 0
 billboard_mode = 1
