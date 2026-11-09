@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dfuhg62lmdh0c"]
 
-[ext_resource type="Script" uid="uid://bdckx2j1oigc6" path="res://scripts/StraightProjectileComponent.gd" id="1_8niji"]
-[ext_resource type="Texture2D" uid="uid://cygqfwsjygdiu" path="res://icon.svg" id="2_gb5fa"]
+[ext_resource type="Script" path="res://scripts/Components/StraightProjectileComponent.gd" id="1_8niji"]
+[ext_resource type="Texture2D" path="res://textures/PNG/Fly Swatter/Fly swatter1.png" id="2_gb5fa"]
+[ext_resource type="Script" path="res://scripts/projectile_visual.gd" id="3_visual"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_qt3ec"]
 radius = 0.21803963
@@ -27,3 +28,6 @@ shape = SubResource("SphereShape3D_qt3ec")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=726087976]
 mesh = SubResource("QuadMesh_qt3ec")
+
+[node name="ProjectileVisual" type="Node" parent="."]
+script = ExtResource("3_visual")

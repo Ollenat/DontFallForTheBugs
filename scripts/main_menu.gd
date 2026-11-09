@@ -1,7 +1,7 @@
 extends Control
 
 ## Path to the scene that starts when "Start Game" is pressed.
-@export_file("*.tscn") var game_scene: String = "res://scenes/game.tscn"
+@export_file("*.tscn") var game_scene: String = "res://scenes/Game.tscn"
 ## Path to the options scene.
 @export_file("*.tscn") var options_scene: String = "res://scenes/options_menu.tscn"
 

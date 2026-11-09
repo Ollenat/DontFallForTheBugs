@@ -18,7 +18,7 @@ transparency = 1
 shading_mode = 0
 albedo_texture = ExtResource("8_shadow")
 texture_filter = 0
-cull_mode = 2
+cull_mode = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_shadow"]
 material = SubResource("StandardMaterial3D_shadow")
@@ -39,7 +39,7 @@ transform = Transform3D(0.70710677, -0.49999997, 0.49999997, 0, 0.70710677, 0.70
 mesh = SubResource("QuadMesh_ksfn8")
 
 [node name="Shadow" type="MeshInstance3D" parent="." unique_id=136710216]
-position = Vector3(0, -0.35, 0)
+position = Vector3(0, 0.02, 0)
 rotation_degrees = Vector3(-90, 0, 0)
 cast_shadow = 0
 mesh = SubResource("QuadMesh_shadow")

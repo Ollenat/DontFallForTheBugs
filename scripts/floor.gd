@@ -86,7 +86,6 @@ func _spawn_debris(divisions: int) -> void:
 		base_uv_scale.y / float(divisions),
 		1.0
 	)
-
 	var spawned_this_frame := 0
 	var total_pieces := divisions * divisions
 	var break_threshold := ceili(float(total_pieces) * BREAK_SPAWN_RATIO)
